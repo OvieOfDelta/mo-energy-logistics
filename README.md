@@ -1,36 +1,52 @@
 # M. O. ENERGY LOGISTICS Website
 
-Static website (HTML, CSS, JS). No build step.
+Static website (HTML, CSS, JS) hosted on GitHub Pages. No build step.
 
 ```
-index.html   page markup, legal dialogs, cookie banner
-css/         styles
-js/          site logic + cookie consent
-assets/      images and fonts
-_headers     Netlify security and caching headers
+index.html     page markup, legal dialogs, cookie banner, forms
+css/style.css  styles
+js/main.js     site logic, form sending (Web3Forms), cookie consent
+images/        every picture you may want to swap (see below)
+assets/fonts/  icon fonts (do not edit)
+favicon.ico    browser-tab icon
+CNAME          tells GitHub Pages the custom domain (keep it)
+.nojekyll      tells GitHub Pages to serve the files as they are (keep it)
 ```
 
-## Deploy with Netlify
+## Changing images
 
-1. Push these files to a GitHub repository (files at the repo root).
-2. In Netlify: Add new site > Import an existing project > GitHub > pick the repo.
-3. Leave build command empty; publish directory is the repo root (`/`). Deploy.
-4. Domain: Site configuration > Domain management > Add custom domain
-   (`moenergylogistics.com.ng`, also add `www`). Netlify shows the exact DNS
-   records to add. Either point nameservers to Netlify, or keep Whogohost
-   nameservers and add the records there (this keeps Whogohost email working).
-5. HTTPS is issued automatically once DNS is verified.
+Replace the file inside `images/` and keep the SAME file name:
 
-Every push to GitHub redeploys the site automatically.
+| File               | Where it shows                         |
+|--------------------|----------------------------------------|
+| `hero-bg.jpg`      | Hero (top banner) background           |
+| `ceo.jpg`          | C.E.O. photo (square works best)       |
+| `logo.png`         | Header and footer logo                 |
+| `favicon-*.png`, `apple-touch-icon.png`, `favicon.ico` | Browser tab / phone icons |
+
+GitHub Pages caches files for a few minutes, so a replaced image can take a little while to appear (a hard refresh helps).
+
+## Contact and quote forms (email)
+
+Both forms are delivered by Web3Forms (free plan, 250 messages a month).
+1. Go to https://web3forms.com, enter the email that should receive messages, and copy the access key emailed to you.
+2. Open `js/main.js`, find `WEB3FORMS_KEY` and paste the key between the quotes (already done for the current key).
+3. Commit. Submit a test from the live site and check the inbox (and spam folder).
+The key is public by design; it can only route messages to that inbox.
+
+## Email address (ImprovMX forwarding)
+
+DNS is at Whogohost. In the Whogohost DNS panel add the two MX records and one TXT (SPF) record ImprovMX shows you,
+and delete any old default MX record. Do not create a second SPF record; merge into the existing one if there is one.
+
+## GitHub Pages and the domain
+
+- Repo > Settings > Pages: deploy from the `main` branch, custom domain `www.moenergylogistics.com.ng`, tick Enforce HTTPS when offered.
+- Whogohost DNS: `CNAME` for `www` pointing to `YOUR-USERNAME.github.io`, plus four `A` records on the main domain
+  pointing to GitHub Pages' addresses listed at docs.github.com (Pages > custom domains).
 
 ## Before going live
 
-- Replace `mosesolonode@yahoo.com` in `index.html` (4 places) once the business email works.
 - Confirm the 24-month retention period in the Privacy Policy.
 - Add your CAC RC number to the footer / Privacy Policy if applicable.
 - Have a Nigerian lawyer review the Privacy Policy, Cookie Policy and Terms.
-
-## Analytics
-
-None is installed. If you add one, load it inside `loadAnalytics()` in `js/main.js`
-so it only runs after the visitor opts in, and name it in the Cookie and Privacy Policies.

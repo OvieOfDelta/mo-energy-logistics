@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>M. O. ENERGY LOGISTICS | Oil &amp; Gas, Logistics, Facilities Maintenance</title>
     <meta name="description" content="M. O. Energy Logistics - oil and gas products (PMS, AGO, DPK, LPG), lubricants and logistics in Surulere, Lagos.">
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E🛢️%3C/text%3E%3C/svg%3E">
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="images/favicon-192.png">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <meta name="theme-color" content="#0F172A">
     <link rel="stylesheet" href="css/style.css">
     <script>document.documentElement.classList.add("js")</script>
 </head>
@@ -32,7 +36,7 @@
             <div class="flex justify-between items-center h-20">
                 
                 <!-- Logo -->
-                <a href="#home" class="flex items-center group"><img src="assets/img/logo.png" alt="M. O. Energy Logistics" style="height:60px;width:auto;display:block"></a>
+                <a href="#home" class="flex items-center group"><img src="images/logo.png" alt="M. O. Energy Logistics" style="height:60px;width:auto;display:block"></a>
 
                 <!-- Desktop Navigation Links -->
                 <nav class="hidden md:flex items-center gap-8 font-medium text-slate-600 text-sm">
@@ -280,7 +284,7 @@
                             <div class="w-10 h-10 rounded-full bg-brandRed/20 text-brandRed flex items-center justify-center font-bold text-lg">3</div>
                             <div>
                                 <h4 class="font-bold text-sm">We Reply Fast</h4>
-                                <p class="text-xs text-slate-400">Your request goes straight to us on WhatsApp.</p>
+                                <p class="text-xs text-slate-400">Your request is emailed to us, and you can confirm it on WhatsApp.</p>
                             </div>
                         </div>
                     </div>
@@ -289,9 +293,12 @@
                 <!-- Calculator Form Card -->
                 <div class="lg:col-span-7 bg-white text-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl">
                     <h3 class="text-2xl font-bold text-brandNavy mb-1">Quote Request Form</h3>
-                    <p class="text-xs text-slate-500 mb-6">Fill in your requirements; we will receive them on WhatsApp.</p>
+                    <p class="text-xs text-slate-500 mb-6">Fill in your requirements; we receive them by email and you can send the same details on WhatsApp.</p>
 
                     <form id="quote-form" onsubmit="handleQuoteSubmit(event)" class="space-y-5">
+                        <input type="hidden" name="category" value="">
+                        <input type="hidden" name="quantity" value="">
+                        <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true">
                         
                         <!-- Service Category Selection -->
                         <div>
@@ -335,28 +342,28 @@
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
                             <div>
                                 <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Full Name / Company</label>
-                                <input type="text" required placeholder="e.g. John Doe / Apex Industries" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brandRed">
+                                <input type="text" required name="company_name" placeholder="e.g. John Doe / Apex Industries" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brandRed">
                             </div>
                             <div>
                                 <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Phone / WhatsApp Number</label>
-                                <input type="tel" required placeholder="e.g. +234 800 000 0000" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brandRed">
+                                <input type="tel" required name="phone" placeholder="e.g. +234 800 000 0000" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brandRed">
                             </div>
                         </div>
 
                         <div>
                             <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Delivery Destination / Address</label>
-                            <input type="text" required placeholder="State, City or Site Location" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brandRed">
+                            <input type="text" required name="destination" placeholder="State, City or Site Location" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brandRed">
                         </div>
 
                         <div>
                             <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Additional Notes or Specifications</label>
-                            <textarea rows="2" placeholder="Mention lubricant types or delivery schedules..." class="w-full px-4 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brandRed"></textarea>
+                            <textarea rows="2" name="notes" placeholder="Mention lubricant types or delivery schedules..." class="w-full px-4 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brandRed"></textarea>
                         </div>
 
 
                         <label class="consent-row" for="consent-quote">
-                            <input type="checkbox" id="consent-quote" required>
-                            <span>I consent to M. O. Energy Logistics using the details I provide to respond to my request, as described in the <a href="#" data-legal="privacy">Privacy Policy</a>. I understand my message will be sent via WhatsApp.</span>
+                            <input type="checkbox" id="consent-quote" name="consent" value="Yes" required>
+                            <span>I consent to M. O. Energy Logistics using the details I provide to respond to my request, as described in the <a href="#" data-legal="privacy">Privacy Policy</a>. I understand my request will be emailed to M. O. Energy Logistics and may also be sent to them on WhatsApp.</span>
                         </label>
 
                         <!-- Submit Button -->
@@ -368,8 +375,8 @@
                     <!-- Success Message Container -->
                     <div id="quote-success" class="hidden mt-4 p-4 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-800 text-center space-y-2">
                         <div class="text-2xl text-brandGreen"><i class="fa-solid fa-circle-check"></i></div>
-                        <h4 class="font-bold">Almost done — WhatsApp is opening</h4>
-                        <p class="text-xs">Send the pre-filled message in WhatsApp and we will reply. If it did not open, call 0807 760 8691.</p>
+                        <h4 class="font-bold">Request received</h4>
+                        <p class="text-xs">We have your request by email. WhatsApp is also opening so you can send the same details; if it did not open, call 0807 760 8691. We will reply shortly.</p>
                     </div>
 
                 </div>
@@ -395,7 +402,7 @@
                                 Executive Leadership
                             </span>
 
-                            <img src="assets/img/ceo-olonode-moses.jpg" alt="Olonode Moses, C.E.O." style="width:120px;height:120px;border-radius:50%;object-fit:cover;object-position:center top;border:4px solid #D92525;margin-bottom:16px;box-shadow:0 8px 20px rgba(0,0,0,.25)">
+                            <img src="images/ceo.jpg" alt="Olonode Moses, C.E.O." style="width:120px;height:120px;border-radius:50%;object-fit:cover;object-position:center top;border:4px solid #D92525;margin-bottom:16px;box-shadow:0 8px 20px rgba(0,0,0,.25)">
 
                             <h3 class="text-2xl font-extrabold text-white">Olonode Moses</h3>
                             <p class="text-brandRed text-sm font-bold uppercase tracking-wider mb-4">Chief Executive Officer (C.E.O.)</p>
@@ -554,7 +561,7 @@
                             </div>
                             <div>
                                 <h4 class="text-xs font-bold uppercase text-slate-400">Email Address</h4>
-                                <p class="text-base font-bold text-white">mosesolonode@yahoo.com</p>
+                                <p class="text-base font-bold text-white">info@moenergylogistics.com.ng</p>
                             </div>
                         </div>
 
@@ -572,21 +579,22 @@
                 <div class="lg:col-span-7 bg-white rounded-3xl p-8 shadow-xl border border-slate-200">
                     <h3 class="text-2xl font-bold text-brandNavy mb-6">Send Us a Direct Message</h3>
 
-                    <form onsubmit="handleContactSubmit(event)" class="space-y-4">
+                    <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-4">
+                        <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true">
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Your Name</label>
-                                <input type="text" required placeholder="Full Name" class="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brandRed">
+                                <input type="text" required name="name" placeholder="Full Name" class="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brandRed">
                             </div>
                             <div>
                                 <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Email Address</label>
-                                <input type="email" required placeholder="name@company.com" class="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brandRed">
+                                <input type="email" required name="email" placeholder="name@company.com" class="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brandRed">
                             </div>
                         </div>
 
                         <div>
                             <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Subject / Area of Interest</label>
-                            <select class="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brandRed">
+                            <select name="subject" class="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brandRed">
                                 <option>Oil and Gas Product Inquiry (PMS, AGO, DPK, LPG)</option>
                                 <option>Lubricants & Engine Oil Supply</option>
                                 <option>Logistics & Haulage Services</option>
@@ -596,13 +604,13 @@
 
                         <div>
                             <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Message Detail</label>
-                            <textarea rows="4" required placeholder="Provide details regarding your requirements..." class="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brandRed"></textarea>
+                            <textarea rows="4" required name="message" placeholder="Provide details regarding your requirements..." class="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brandRed"></textarea>
                         </div>
 
 
                         <label class="consent-row" for="consent-contact">
-                            <input type="checkbox" id="consent-contact" required>
-                            <span>I consent to M. O. Energy Logistics using the details I provide to respond to my request, as described in the <a href="#" data-legal="privacy">Privacy Policy</a>. I understand my message will be sent via WhatsApp.</span>
+                            <input type="checkbox" id="consent-contact" name="consent" value="Yes" required>
+                            <span>I consent to M. O. Energy Logistics using the details I provide to respond to my request, as described in the <a href="#" data-legal="privacy">Privacy Policy</a>. I understand my message will be emailed to M. O. Energy Logistics.</span>
                         </label>
 
                         <button type="submit" class="w-full bg-brandNavy hover:bg-slate-800 text-white font-bold py-4 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2">
@@ -613,6 +621,10 @@
                     <div id="contact-success" class="hidden mt-4 p-4 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-800 text-center">
                         <p class="font-bold text-sm"><i class="fa-solid fa-circle-check text-brandGreen mr-2"></i> Message Sent Successfully!</p>
                         <p class="text-xs text-slate-600 mt-1">We will respond to your inquiry shortly.</p>
+                    </div>
+                    <div id="contact-error" class="hidden mt-4 p-4 bg-red-50 border border-red-200 rounded-xl text-red-800 text-center" role="alert">
+                        <p class="font-bold text-sm"><i class="fa-solid fa-triangle-exclamation mr-2"></i> Your message could not be sent.</p>
+                        <p class="text-xs mt-1">Please try again, or reach us on WhatsApp (0903 195 7526) or by phone (0807 760 8691).</p>
                     </div>
                 </div>
 
@@ -630,7 +642,7 @@
                 
                 <!-- Brand Info -->
                 <div class="space-y-4 md:col-span-1">
-                    <div style="display:inline-block;background:#fff;border-radius:10px;padding:8px 14px"><img src="assets/img/logo.png" alt="M. O. Energy Logistics" style="height:84px;width:auto;display:block"></div>
+                    <div style="display:inline-block;background:#fff;border-radius:10px;padding:8px 14px"><img src="images/logo.png" alt="M. O. Energy Logistics" style="height:84px;width:auto;display:block"></div>
                     <p class="text-xs leading-relaxed text-slate-400">
                         Marketing of Oil and Gas Products, Lubricants, Logistics Services, and General Merchandise.
                     </p>
@@ -689,6 +701,9 @@
             </div>
         </div>
     </footer>
+
+    <!-- Floating email button (sits above the WhatsApp button) -->
+    <a id="mailf" href="mailto:info@moenergylogistics.com.ng?subject=Enquiry%20-%20M.%20O.%20Energy%20Logistics" aria-label="Send us an email"><i class="fa-solid fa-envelope"></i></a>
 
     <!-- ============ Cookie Consent Banner ============ -->
     <div id="cookie-banner" class="cc-banner" role="region" aria-label="Cookie consent" hidden>
@@ -766,7 +781,7 @@
 
                 <!-- ================= PRIVACY POLICY ================= -->
                 <article class="lg-doc" id="doc-privacy" data-title="Privacy Policy" hidden>
-                    <p class="lg-meta">Last updated: 13 October 2026</p>
+                    <p class="lg-meta">Last updated: 17 October 2026</p>
                     <p>
                         This Privacy Policy explains how <strong>M. O. ENERGY LOGISTICS</strong> (“we”, “us”, “our”) collects, uses, shares and protects your personal data when you use this website, in line with the <strong>Nigeria Data Protection Act, 2023 (NDPA)</strong> and the regulations and guidance of the <strong>Nigeria Data Protection Commission (NDPC)</strong>.
                     </p>
@@ -775,7 +790,7 @@
                     <p>
                         We are the data controller for personal data collected through this website.<br>
                         Block A, Shop 33, Olaniyonu Ultra Market, Coker, Surulere, Lagos State, Nigeria.<br>
-                        Email: <a href="mailto:mosesolonode@yahoo.com">mosesolonode@yahoo.com</a> · Phone: 0807 760 8691
+                        Email: <a href="mailto:info@moenergylogistics.com.ng">info@moenergylogistics.com.ng</a> · Phone: 0807 760 8691
                     </p>
 
                     <h3>2. Personal data we collect</h3>
@@ -789,7 +804,7 @@
 
                     <h3>3. How the website forms work</h3>
                     <p>
-                        When you submit the quote or contact form, this website prepares a pre-filled message and opens WhatsApp so you can send it to us. The website itself does not store your form entries on a database. Once you send the message, it is handled through WhatsApp (operated by Meta Platforms) under WhatsApp’s own terms and privacy policy, and it is then held by us on our business phone.
+                        When you submit the quote or contact form, your entries are sent through Web3Forms, an online form-to-email service, which delivers them to our business mailbox (which in turn uses the email-forwarding service ImprovMX to pass messages to our inbox). When you submit a quote request, the website also opens WhatsApp with a pre-filled message so you can send the same details to us; if you send it, WhatsApp (operated by Meta Platforms) handles it under its own terms and privacy policy. Messages we receive are then held by us in our email and on our business phone.
                     </p>
 
                     <h3>4. Why we use your data and our legal basis</h3>
@@ -803,14 +818,15 @@
 
                     <h3>5. Who we share data with</h3>
                     <ul>
-                        <li><strong>WhatsApp / Meta</strong>, as the channel you use to send us your enquiry.</li>
+                        <li><strong>Web3Forms</strong> (form-to-email delivery), <strong>ImprovMX</strong> (email forwarding) and <strong>GitHub</strong> (website hosting), which process data on our behalf to run this website and deliver your messages to us.</li>
+                        <li><strong>WhatsApp / Meta</strong>, if you choose to send your enquiry through WhatsApp.</li>
                         <li><strong>Logistics partners, depots, drivers and suppliers</strong>, only to the extent needed to fulfil an order you have placed.</li>
                         <li><strong>Professional advisers, regulators or law-enforcement bodies</strong>, where required by law or to protect legal rights.</li>
                     </ul>
 
                     <h3>6. Transfers outside Nigeria</h3>
                     <p>
-                        Messaging services such as WhatsApp may process data on servers outside Nigeria. Where personal data is transferred abroad, we rely on the safeguards the NDPA permits, such as the recipient’s adequate data-protection measures or your consent.
+                        Our website host (GitHub), our form and email services (Web3Forms, ImprovMX) and messaging services such as WhatsApp may process data on servers outside Nigeria. Where personal data is transferred abroad, we rely on the safeguards the NDPA permits, such as the recipient’s adequate data-protection measures or your consent.
                     </p>
 
                     <h3>7. How long we keep your data</h3>
@@ -834,7 +850,7 @@
                         <li>withdraw your consent at any time. Withdrawal does not affect processing done before you withdrew.</li>
                     </ul>
                     <p>
-                        To exercise any right, email <a href="mailto:mosesolonode@yahoo.com">mosesolonode@yahoo.com</a> with the subject “Data Request”. We may need to verify your identity first and will respond within the time limits set by law.
+                        To exercise any right, email <a href="mailto:info@moenergylogistics.com.ng">info@moenergylogistics.com.ng</a> with the subject “Data Request”. We may need to verify your identity first and will respond within the time limits set by law.
                     </p>
 
                     <h3>10. Children</h3>
@@ -851,7 +867,7 @@
 
                 <!-- ================= COOKIE POLICY ================= -->
                 <article class="lg-doc" id="doc-cookies" data-title="Cookie Policy" hidden>
-                    <p class="lg-meta">Last updated: 13 October 2026</p>
+                    <p class="lg-meta">Last updated: 17 October 2026</p>
                     <p>
                         This Cookie Policy explains how <strong>M. O. ENERGY LOGISTICS</strong> uses cookies and similar technologies (such as browser local storage) on this website, and how you can control them. It should be read with our Privacy Policy.
                     </p>
@@ -883,7 +899,7 @@
 
                     <h3>3. Third-party services</h3>
                     <p>
-                        The WhatsApp buttons and the quote and contact forms open WhatsApp, an external service operated by Meta Platforms. Once you leave this website, WhatsApp’s own cookie and privacy practices apply. Font and icon files used by this site are served from our own website.
+                        The WhatsApp buttons and the quote form open WhatsApp, an external service operated by Meta Platforms, and the email button opens your own email app. Once you leave this website, WhatsApp’s own cookie and privacy practices apply. Form submissions are delivered by Web3Forms. Font and icon files used by this site are served from our own website.
                     </p>
 
                     <h3>4. Your choices</h3>
@@ -902,7 +918,7 @@
 
                 <!-- ================= TERMS OF SERVICE ================= -->
                 <article class="lg-doc" id="doc-terms" data-title="Terms of Service" hidden>
-                    <p class="lg-meta">Last updated: 13 October 2026</p>
+                    <p class="lg-meta">Last updated: 17 October 2026</p>
                     <p>
                         These Terms of Service govern your use of the <strong>M. O. ENERGY LOGISTICS</strong> website and your interactions with our sales operations through it. By using the website you agree to these terms. If you do not agree, please do not use the site.
                     </p>
@@ -929,7 +945,7 @@
                     </p>
 
                     <h3>5. Third-party services and links</h3>
-                    <p>This website relies on third-party services such as WhatsApp. We do not control them and are not responsible for their availability, content or privacy practices.</p>
+                    <p>This website relies on third-party services such as GitHub (hosting), Web3Forms (form delivery) and WhatsApp. We do not control them and are not responsible for their availability, content or privacy practices.</p>
 
                     <h3>6. Disclaimer and limitation of liability</h3>
                     <ul>
@@ -951,7 +967,7 @@
                     <h3>10. Contact</h3>
                     <p>
                         M. O. ENERGY LOGISTICS, Block A, Shop 33, Olaniyonu Ultra Market, Coker, Surulere, Lagos State.<br>
-                        <a href="mailto:mosesolonode@yahoo.com">mosesolonode@yahoo.com</a> · 0807 760 8691
+                        <a href="mailto:info@moenergylogistics.com.ng">info@moenergylogistics.com.ng</a> · 0807 760 8691
                     </p>
                 </article>
 

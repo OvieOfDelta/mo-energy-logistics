@@ -3,11 +3,19 @@
   X-Frame-Options: SAMEORIGIN
   Referrer-Policy: strict-origin-when-cross-origin
 
-/assets/*
-  Cache-Control: public, max-age=2592000
+# Images are re-checked on every visit so a replaced file shows up straight away
+/images/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+/favicon.ico
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Fonts never change, so cache them for a year
+/assets/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
 
 /css/*
-  Cache-Control: public, max-age=604800
+  Cache-Control: public, max-age=3600, must-revalidate
 
 /js/*
-  Cache-Control: public, max-age=604800
+  Cache-Control: public, max-age=3600, must-revalidate

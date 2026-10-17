@@ -35,10 +35,25 @@ const b=document.getElementById("btn-"+cat);b.classList.remove("bg-slate-100","t
 const r=document.getElementById("volume-range");r.min=c[0];r.max=c[1];r.step=c[2];r.value=c[3];
 document.getElementById("quantity-label").textContent=c[5];updateVolume(c[3])}
 function updateVolume(v){document.getElementById("quantity-display").textContent=parseInt(v).toLocaleString()+" "+CFG[activeCategory][4]}
-function lines(f){return [...f.querySelectorAll("input[type=text],input[type=tel],input[type=email],textarea,select")].map(e=>{const l=e.parentElement.querySelector("label");return (l?l.textContent.trim():"")+": "+e.value}).join("\n")}
+function lines(f){return [...f.querySelectorAll("input[type=text],input[type=tel],input[type=email],textarea,select")].filter(e=>e.name!=="bot-field").map(e=>{const l=e.parentElement.querySelector("label");return (l?l.textContent.trim():"")+": "+e.value}).join("\n")}
 function openWA(t){window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(t),"_blank")}
-function handleQuoteSubmit(e){e.preventDefault();const f=e.target;openWA("Quote request - M. O. Energy Logistics\nCategory: "+activeCategory.toUpperCase()+"\nQuantity: "+document.getElementById("quantity-display").textContent+"\n"+lines(f));f.classList.add("hidden");document.getElementById("quote-success").classList.remove("hidden")}
-function handleContactSubmit(e){e.preventDefault();const f=e.target;openWA("Message - M. O. Energy Logistics\n"+lines(f));document.getElementById("contact-success").classList.remove("hidden")}
+/* ---- Email delivery via Web3Forms ----
+   1. Get a free access key at https://web3forms.com (enter the email that should receive messages).
+   2. Paste it below. The key is public by design: it only routes messages to your inbox. */
+const WEB3FORMS_KEY = "68821c08-1fff-4c13-ae02-e20c2718407d";
+function sendForm(f,subject){
+  if(!WEB3FORMS_KEY||WEB3FORMS_KEY.indexOf("PASTE_")===0){console.warn("Web3Forms access key not set in js/main.js");return Promise.resolve(false)}
+  const fd=new FormData(f);
+  fd.set("access_key",WEB3FORMS_KEY);
+  fd.set("from_name","M. O. Energy Logistics Website");
+  if(subject)fd.set("subject",subject);
+  return fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Accept":"application/json"},body:fd})
+    .then(function(r){return r.json()}).then(function(d){return !!(d&&d.success)}).catch(function(){return false});
+}
+function setBusy(f,on){const b=f.querySelector("button[type=submit]");if(!b)return;b.disabled=on;b.style.opacity=on?".6":"";if(on){b.dataset.t=b.innerHTML;b.innerHTML='<i class="fa-solid fa-spinner fa-spin"></i> Sending...'}else if(b.dataset.t){b.innerHTML=b.dataset.t}}
+function handleQuoteSubmit(e){e.preventDefault();const f=e.target;f.elements.category.value=activeCategory.toUpperCase();f.elements.quantity.value=document.getElementById("quantity-display").textContent;sendForm(f,"New quote request - "+f.elements.category.value+" ("+f.elements.quantity.value+")");openWA("Quote request - M. O. Energy Logistics\nCategory: "+activeCategory.toUpperCase()+"\nQuantity: "+document.getElementById("quantity-display").textContent+"\n"+lines(f));f.classList.add("hidden");document.getElementById("quote-success").classList.remove("hidden")}
+function handleContactSubmit(e){e.preventDefault();const f=e.target,ok=document.getElementById("contact-success"),bad=document.getElementById("contact-error");ok.classList.add("hidden");bad.classList.add("hidden");setBusy(f,true);
+  sendForm(f).then(function(sent){setBusy(f,false);if(sent){ok.classList.remove("hidden");f.reset()}else{bad.classList.remove("hidden")}})}
 
 /* ---- Hero canvas animation ---- */
 (function(){
